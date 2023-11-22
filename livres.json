@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "auteur": "adam",
+    "titre": "adam",
+    "editeur": "adam",
+    "ISBN": "adam",
+    "nbr_exemplaire": 0
+  },
+  {
+    "id": 2,
+    "auteur": "adam",
+    "titre": "adaam",
+    "editeur": "adam",
+    "ISBN": "adam",
+    "nbr_exemplaire": 0
+  },
+  {
+    "id": 3,
+    "auteur": "adam",
+    "titre": "aaddaam",
+    "editeur": "adam",
+    "ISBN": "adam",
+    "nbr_exemplaire": 0
+  },
+  {
+    "id": 4,
+    "auteur": "adammm",
+    "titre": "adam",
+    "editeur": "adm",
+    "ISBN": "adam",
+    "nbr_exemplaire": 1
+  }
+]
