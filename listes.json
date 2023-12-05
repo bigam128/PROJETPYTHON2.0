@@ -1,29 +1,181 @@
 [
   {
     "id": 1,
-    "nom": "a",
-    "prenom": "a",
-    "username": "a",
-    "email": "a",
-    "mdp": "a"
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user1",
+    "email": "sss",
+    "mdp": "1",
+    "livres_empruntes": [
+      7,
+      1
+    ],
+    "suspended": false
   },
   {
     "id": 2,
-    "nom": "a",
-    "prenom": "a",
-    "username": "a",
-    "email": "a",
-    "mdp": "a"
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user2",
+    "email": "sss",
+    "mdp": "2",
+    "livres_empruntes": [
+      7
+    ],
+    "suspended": false
   },
   {
     "id": 3,
-    "nom": "a",
-    "prenom": "a",
-    "username": "addd",
-    "email": "ad",
-    "mdp": "a"
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user3",
+    "email": "sss",
+    "mdp": "3",
+    "livres_empruntes": [],
+    "suspended": false
+  },
+  {
+    "id": 4,
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user4",
+    "email": "sss",
+    "mdp": "4",
+    "livres_empruntes": [
+      7
+    ],
+    "suspended": false
+  },
+  {
+    "id": 5,
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user5",
+    "email": "sss",
+    "mdp": "5",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 6,
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user6",
+    "email": "sss",
+    "mdp": "6",
+    "livres_empruntes": [
+      1
+    ],
+    "suspended": false
+  },
+  {
+    "id": 7,
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user7",
+    "email": "sss",
+    "mdp": "7",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 8,
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "username": "user8",
+    "email": "sss",
+    "mdp": "8",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 9,
+    "nom": "adam",
+    "prenom": "saaa",
+    "username": "user9",
+    "email": "a",
+    "mdp": "9",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 10,
+    "nom": "benjilali",
+    "prenom": "moushine",
+    "username": "user10",
+    "email": "bnnnn",
+    "mdp": "9",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 11,
+    "nom": "sabar",
+    "prenom": "addd",
+    "username": "user11",
+    "email": "aaa",
+    "mdp": "11",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 12,
+    "nom": "Amoooo",
+    "prenom": "deeeo",
+    "username": "user12",
+    "email": "a",
+    "mdp": "12",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 13,
+    "nom": "seeee",
+    "prenom": "eeee",
+    "username": "user13",
+    "email": "aa",
+    "mdp": "13",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 14,
+    "nom": "raaaaa",
+    "prenom": "sssss",
+    "username": "user14",
+    "email": "aaa",
+    "mdp": "14",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 15,
+    "nom": "saaaberi",
+    "prenom": "zeeeeen",
+    "username": "user15",
+    "email": "a",
+    "mdp": "15",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 16,
+    "nom": "bellingham",
+    "prenom": "jude",
+    "username": "user16",
+    "email": "a",
+    "mdp": "16",
+    "livres_empruntes": null,
+    "suspended": false
+  },
+  {
+    "id": 17,
+    "nom": "sabar",
+    "prenom": "yassir",
+    "username": "user17",
+    "email": "a",
+    "mdp": "17",
+    "livres_empruntes": null,
+    "suspended": false
   }
 ]
-
-
-
