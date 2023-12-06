@@ -93,11 +93,11 @@ class Administrateur:
             print("Etudiant Info:", etudiant_info)
 
             if cls.ajouter_blacklist(etudiant_info):
-                print(f'Etudiant avec ID {etudiant_id} suspendu et ajouté à la liste noire.')
+                print(f'etudiant avec id {etudiant_id} suspendu ')
             else:
-                print(f'Etudiant avec ID {etudiant_id} déjà présent dans la liste noire.')
+                print(f'etudiant avec id {etudiant_id} deja present dans la liste noire.')
         else:
-            print(f'Etudiant avec ID {etudiant_id} non trouvé dans le fichier des étudiants.')
+            print(f'etudiant avec id {etudiant_id} non trouve dans la liste des etudiants.')
 
     @classmethod
     def ajouter_blacklist(cls, etudiant_info):  # ez

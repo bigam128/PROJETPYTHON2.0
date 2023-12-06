@@ -61,7 +61,7 @@ class class_etudiant:
         if class_livre.emprunter_livre(livre_id, logged_in_etudiant.id, livres_file):
             with open(etudiants_file, "r") as f:
                 etudiants_data = json.load(f)
-            for etudiant_data in etudiants_data: #trouver si l'ettudiant est logged_in pour avoir son id
+            for etudiant_data in etudiants_data: #trouver si l'etudiant est logged_in pour avoir son id
                 if etudiant_data["id"] == logged_in_etudiant.id:
                     if etudiant_data["livres_empruntes"] is None:
                         etudiant_data["livres_empruntes"] = [livre_id]
@@ -71,10 +71,10 @@ class class_etudiant:
                 json.dump(etudiants_data, f, indent=2)
             print(f" livre avec le id {livre_id} emprunter")
         else:
-            print(f"Le livre avec l'ID {livre_id} n'est pas disponible.")
+            print(f"Le livre avec le id {livre_id} n'est pas disponible.")
     @classmethod
-    def affiche_emprunts(cls, livre_file, etudiants_file): #hard
-        from Administrateur import Administrateur # ca va nous servir pour ajouter_blacklist
+    def affiche_emprunts(cls, livre_file, etudiants_file): #harddddd
+        from Administrateur import Administrateur # ca va nous servir pour ajouter_blacklist mais apres je pense je vais changer la methode!!
         if not cls.user:
             print("acun etudiant connecte")
             return
@@ -102,7 +102,7 @@ class class_etudiant:
                                     jours_ctdwn = (datetime.now() - date_emprunt).days
                                     #print("jours_ctdwn:", jours_ctdwn) pour debbbogage!!
                                     if jours_ctdwn > 7:
-                                        Administrateur.ajouter_blacklist({
+                                        Administrateur.ajouter_blacklist({ #ou bien je peux juste enlever ca d'ici et suspendre l'etudiant de Administrateur sans utiliser cette methode ici mais ca marche aussi
                                             'id': logged_in_etudiant.id,
                                             'username': logged_in_etudiant.username,
                                             'nom': logged_in_etudiant.nom,
@@ -111,13 +111,13 @@ class class_etudiant:
                                     table.add_row([livre['id'], livre['titre'], livre['auteur'], date_emprunt, jours_ctdwn])
                     print(table)
                 else:
-                    print('Aucun livre emprunté.')
+                    print('aucun livre emprunte.')
                 break
         else:
-            print('Aucun utilisateur trouvé.')
+            print('aucun utilisateur trouve.')
 
     @classmethod
-    def supprimer_emprunt(cls,livre_id,etudiant_file,livres_file):
+    def supprimer_emprunt(cls,livre_id , etudiant_file, livres_file): # pourquoi ca supprime touts les emprunts?
         if not cls.user:
             print("aucun etudiant connecte")
             return
@@ -130,7 +130,7 @@ class class_etudiant:
                 livres_empruntes = etudiant["livres_empruntes"]
                 if livre_id in livres_empruntes:
                     livres_empruntes.remove(livre_id)
-                    class_livre.supp_emprunt(livre_id,livres_file)
+                    class_livre.supp_emprunt(logged_in_etudiant.id,livre_id, livres_file)
                     with open(etudiant_file, "w") as f:
                         json.dump(etudiant_data, f, indent=2)
                     #///// incrementer le nbr exemplaire !
@@ -138,17 +138,12 @@ class class_etudiant:
                         livres_data = json.load(f)
                     for livre in livres_data:
                         if livre["id"] == livre_id:
-                            livre["nbr_exemplaire"] += 1
+                            livre["nbr_exemplaire"] += 1 #retourner
                             with open(livres_file, "w") as f_updt:
                                 json.dump(livres_data, f_updt, indent=2)
                             print(f"livre avec id {livre_id} retourner")
                             return
         print("aucun livre correspendant avec cet id")
-
-
-
-
-
     @classmethod
     def menu_etudiant(cls): #ez
         print("****************Welcome etudiant****************")

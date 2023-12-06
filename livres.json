@@ -7,17 +7,12 @@
     "ISBN": "adam",
     "nbr_exemplaire": 46,
     "emprunte_par": [
-      1,
-      6
+      1
     ],
     "date_emprunt": [
       {
-        "date_emprunt": "2023-12-05 21:13:17",
+        "date_emprunt": "2023-12-04 16:37:03",
         "etudiant_id": 1
-      },
-      {
-        "date_emprunt": "2023-12-05 21:14:12",
-        "etudiant_id": 6
       }
     ]
   },
@@ -116,9 +111,16 @@
     "titre": "rrrrr",
     "editeur": "dehbi",
     "ISBN": "2701",
-    "nbr_exemplaire": 78,
-    "emprunte_par": [],
-    "date_emprunt": []
+    "nbr_exemplaire": 77,
+    "emprunte_par": [
+      1
+    ],
+    "date_emprunt": [
+      {
+        "date_emprunt": "2023-12-06 09:33:22",
+        "etudiant_id": 1
+      }
+    ]
   },
   {
     "id": 10,

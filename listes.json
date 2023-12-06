@@ -8,7 +8,8 @@
     "mdp": "1",
     "livres_empruntes": [
       7,
-      1
+      1,
+      9
     ],
     "suspended": false
   },

@@ -106,7 +106,8 @@ class class_livre:
                     # // update : je vais stocker la date dans un array pour avoir la date et le id respectivemment
                     date_emprunt_entree = {
                         'date_emprunt': datetime.now().strftime("%Y-%m-%d %H:%M:%S"), #la date !!! on l'implemente ici car c le bon moment ;)
-                        'etudiant_id': etudiant_id
+                        'etudiant_id': etudiant_id,
+                        #'livre_id' : livre_id apres je vais la modifier pour mettre c informations dans un nouveau fichier la liste des emprunts
                     }
                     livre['date_emprunt'].append(date_emprunt_entree)
                     livre['emprunte_par'].append(etudiant_id)
@@ -119,18 +120,40 @@ class class_livre:
                     return False
 
     @classmethod
-    def supp_emprunt(cls, livre_id, livres_file):  # cette methode pour l'appeler dans supprimer_emprunt class etudiant
+    def supp_emprunt(cls, etudiant_id, livre_id, livres_file): #cette methode et plus specifique que celle d'avant qui effacer tous les informations
         with open(livres_file, "r") as f:
             livres_data = json.load(f)
         for livre in livres_data:
             if livre['id'] == livre_id:
-                livre['date_emprunt'] = []
-                livre['emprunte_par'] = []
-                with open(livres_file, "w") as f:
-                    json.dump(livres_data, f, indent=2)
-                return True
-            print("Livre non trouvé")
-            return False
+                etudiant_index = livre.get("emprunte_par", []).index(etudiant_id) if "emprunte_par" in livre else None
+                if etudiant_index is not None:
+                    livre["emprunte_par"].pop(etudiant_index)# on efface dans emprunter par le id qu'on veut
+                    date_index = None # dans "date_emprunt" on cherche le etudiant id et on l'efface
+                    for i, date_info in enumerate(livre.get("date_emprunt", [])):
+                        if date_info.get("etudiant_id") == etudiant_id:
+                            date_index = i
+                            break
+                    if date_index is not None:
+                        livre["date_emprunt"].pop(date_index)
+                    with open(livres_file, "w") as f:
+                        json.dump(livres_data, f, indent=2)
+                    return True
+        print("Livre non trouvé")
+        return False
+
+    #@classmethod
+    #def supp_emprunt(cls, livre_id, livres_file):  # cette methode pour l'appeler dans supprimer_emprunt class etudiant
+        #with open(livres_file, "r") as f:
+           # livres_data = json.load(f)
+        #for livre in livres_data:
+            #if livre['id'] == livre_id:
+                #livre['date_emprunt'] = []
+               # livre['emprunte_par'] = []
+               # with open(livres_file, "w") as f:
+                    #json.dump(livres_data, f, indent=2)
+                #return True
+            #print("Livre non trouvé")
+           # return False
 
 
 #if livre:
