@@ -5,14 +5,14 @@
     "titre": "adam",
     "editeur": "adam",
     "ISBN": "adam",
-    "nbr_exemplaire": 46,
+    "nbr_exemplaire": 45,
     "emprunte_par": [
-      1
+      20
     ],
     "date_emprunt": [
       {
-        "date_emprunt": "2023-12-04 16:37:03",
-        "etudiant_id": 1
+        "date_emprunt": "2023-12-18 22:48:02",
+        "etudiant_id": 20
       }
     ]
   },
@@ -22,22 +22,36 @@
     "titre": "adaam",
     "editeur": "adam",
     "ISBN": "adam",
-    "nbr_exemplaire": 65,
-    "emprunte_par": [],
-    "date_emprunt": []
+    "nbr_exemplaire": 64,
+    "emprunte_par": [
+      22
+    ],
+    "date_emprunt": [
+      {
+        "date_emprunt": "2023-12-18 23:13:24",
+        "etudiant_id": 22
+      }
+    ]
   },
   {
     "id": 3,
     "auteur": "adam",
-    "titre": "aaddaam",
+    "titre": "espn",
     "editeur": "adam",
     "ISBN": "adam",
-    "nbr_exemplaire": 51,
-    "emprunte_par": [],
-    "date_emprunt": []
+    "nbr_exemplaire": "600",
+    "emprunte_par": [
+      22
+    ],
+    "date_emprunt": [
+      {
+        "date_emprunt": "2023-12-18 23:13:57",
+        "etudiant_id": 22
+      }
+    ]
   },
   {
-    "id": 4,
+    "id": 5,
     "auteur": "adammm",
     "titre": "adam",
     "editeur": "adm",
@@ -47,24 +61,19 @@
     "date_emprunt": []
   },
   {
-    "id": 5,
-    "auteur": "jk rowling",
-    "titre": "harry pottter",
-    "editeur": "jkjk",
-    "ISBN": "HGS3NNNNSH000",
-    "nbr_exemplaire": 99,
+    "id": 4,
+    "auteur": "adammm",
+    "titre": "adam",
+    "editeur": "adm",
+    "ISBN": "adam",
+    "nbr_exemplaire": 96,
     "emprunte_par": [
-      1,
-      3
+      22
     ],
     "date_emprunt": [
       {
-        "date_emprunt": "2023-12-04 16:37:03",
-        "etudiant_id": 1
-      },
-      {
-        "date_emprunt": "2023-11-04 16:38:54",
-        "etudiant_id": 3
+        "date_emprunt": "2023-12-18 23:14:03",
+        "etudiant_id": 22
       }
     ]
   },
@@ -86,15 +95,11 @@
     "ISBN": "ssss",
     "nbr_exemplaire": 75,
     "emprunte_par": [
-      1,
       2,
-      4
+      4,
+      22
     ],
     "date_emprunt": [
-      {
-        "date_emprunt": "2023-12-04 19:40:40",
-        "etudiant_id": 1
-      },
       {
         "date_emprunt": "2023-12-04 19:43:20",
         "etudiant_id": 2
@@ -102,6 +107,10 @@
       {
         "date_emprunt": "2023-12-04 19:44:40",
         "etudiant_id": 4
+      },
+      {
+        "date_emprunt": "2023-12-18 23:14:07",
+        "etudiant_id": 22
       }
     ]
   },
@@ -138,6 +147,16 @@
     "titre": "facooohhh",
     "editeur": "hgytr",
     "ISBN": "789III",
+    "nbr_exemplaire": 1,
+    "emprunte_par": [],
+    "date_emprunt": []
+  },
+  {
+    "id": 15,
+    "auteur": "ADPOR",
+    "titre": "RET",
+    "editeur": "ZEUS",
+    "ISBN": "12SED",
     "nbr_exemplaire": 1,
     "emprunte_par": [],
     "date_emprunt": []

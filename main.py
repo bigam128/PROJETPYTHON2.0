@@ -1,18 +1,8 @@
-from Etudiant import class_etudiant
-from Administrateur import Administrateur
-from Livre import class_livre
+
+from Uttilisateurs import class_utilisateurs
+
 def main_menu():
     print("****************Main Menu****************")
-    while True:
-        choix = input("A: Admin \n B: Etudiant \n X: retourner \n saisir votre choix : ")
-        if choix.upper() == 'A':
-            Administrateur.menu_administrateur()
-        elif choix.upper() == 'B':
-            class_etudiant.menu_etudiant()
-        elif choix.upper() == 'X':
-            print("goodbye!")
-            break
-        else:
-            print("choix incorrecte")
+    print(class_utilisateurs.login("listes.json","blacklist.json"))
 main_menu()
 

@@ -1,47 +1,16 @@
 import hashlib
+from Uttilisateurs import class_utilisateurs
 from Etudiant import class_etudiant
 from Livre import class_livre
 from prettytable import PrettyTable
 import json
 
-class Administrateur:
-    id = 0
-    users = []
-    @classmethod
-    def ajouter_user(cls):
-        try:
-            with open("listes.json", "r") as f:
-                cls.users = json.load(f)
-        except(FileNotFoundError,json.JSONDecodeError):  # ca ca ca n'as pas voulu ouvrir le fichier quand j'ai ecris juste FileNot found error
-            cls.users = []
-        max_id = max(cls.users, key=lambda x: x['id'], default={'id': 0}).get('id')  # trouver le id max dans la liste key lambda x(element comme livres[...]) fonction pour qui va rendre la valeur id
-        nouv_id = int(max_id) + 1  # on ajoute le id depending on the previous id ce qui le MAX!!!
-        while True:
-            nom = input('Saisir nom : ')
-            if nom == "stop":
-                break
-            prenom = input('Saisir prenom : ')
-            username = input('saisir un username : ')
-            if any(user.get('username') == username for user in cls.users):
-                print('username doit être unique. Veuillez choisir un autre username.')
-                continue
-            email = input('Saisir email sous forme (exemple@gmail.com): ')
-            mdp = input("Saisir le mot de passe : ")
-            confirmer_mdp = input('Confirmer le mot de passe : ')
-            if confirmer_mdp == mdp:
-                #hasher le mot de passe avec MD5 pq pas
-                encrypted = mdp.encode()
-                hash_mdp = hashlib.md5(encrypted).hexdigest()
-                user_instance = class_etudiant(nouv_id, nom, prenom, username, email, mdp,livres_empruntes=None,suspended=False)  # on ajoute les etiduants
-                cls.users.append(user_instance.__dict__)
-                with open("listes.json", "w") as f:  # Enregistrer les informations dans un fichier json
-                    json.dump(cls.users, f, indent=2)
-                    f.write('\n')
-                print(user_instance)
-                nouv_id+=1
-            else:
-                print('Veuillez saisir le même mot de passe.')
+class Administrateur(class_utilisateurs):
+    admin = []
 
+    def __init__(self, id, nom, prenom, username, email, mdp, role):
+        super().__init__(id, nom, prenom, username, email, mdp, role)
+        self.role = "Administrateur"
 
     @classmethod
     def affichage_etudiant(cls):  # affichage du tableau en mode pretty table
@@ -50,25 +19,32 @@ class Administrateur:
             with open("listes.json", "r") as f:
                 etudiant_data = json.load(f)
                 for et_data in etudiant_data:
-                    table.add_row([et_data['id'], et_data['nom'], et_data['prenom'], et_data['username'],
-                                   et_data['email'], et_data['mdp'], et_data["suspended"]])
+                    if 'role' in et_data and et_data["role"] == "Etudiant":
+                        suspended_status = et_data.get("suspended", False)
+                        table.add_row([et_data['id'], et_data['nom'], et_data['prenom'], et_data['username'], et_data['email'], et_data['mdp'], suspended_status])
         except FileNotFoundError:
             print("the file does not exist")
         print(table)
 
     @classmethod
     def supprimer_livre(cls, livre_id, livre_file):
+        if not cls.admin:
+            print("Aucun admin connecté.")
+            return
+        logged_in_etudiant = cls.admin[0]
         with open(livre_file, "r+") as f:
             livres_data = json.load(f)
         filterage_livres = [livre for livre in livres_data if livre["id"] != livre_id]
         with open(livre_file, "w") as f:
             json.dump(filterage_livres, f, indent=2)
         print(f"Livre avec l'ID {livre_id} supprimé")
-   # @classmethod
-    #def supprimer_etudiant(cls,etudiant_id, etudiant_file):
 
     @classmethod
     def afficher_etudiant_blacklist(cls, blacklist_file):
+        if not cls.admin:
+            print("Aucun admin connecté.")
+            return
+        logged_in_etudiant = cls.admin[0]
         table = PrettyTable(['id', 'username','nom','prenom'])
         with open(blacklist_file, "r") as f:
             etudiant_blacklist = json.load(f)
@@ -77,6 +53,10 @@ class Administrateur:
         print(table)
     @classmethod
     def supprimer_etudiant(cls,etudiant_id,etudiant_file):
+        if not cls.admin:
+            print("Aucun admin connecté.")
+            return
+        logged_in_etudiant = cls.admin[0]
         with open(etudiant_file, "r+") as f:
             etudiant_data = json.load(f)
         filterage_etudiant = [etudiant for etudiant in etudiant_data if etudiant["id"] != etudiant_id]
@@ -85,6 +65,10 @@ class Administrateur:
         print(f"Livre avec l'ID {etudiant_id} supprimé")
     @classmethod
     def suspendre_etudiant(cls,etudiant_id, etudiant_file):
+        if not cls.admin:
+            print("Aucun admin connecté.")
+            return
+        logged_in_etudiant = cls.admin[0]
         with open(etudiant_file, "r") as f:
             etudiant_data = json.load(f)
         etudiant_exist = any(x['id'] == etudiant_id for x in etudiant_data)
@@ -120,6 +104,10 @@ class Administrateur:
 
     @classmethod
     def reactiver_compte_etudiant(cls, etudiant_id, blacklist_file): #cette metthode est simple vraiment l'administrateur va juste supprimer l'etudiant de la blacklist ett lui donner une chance pour rendre le livre
+        if not cls.admin:
+            print("Aucun admin connecté.")
+            return
+        logged_in_etudiant = cls.admin[0]
         with open(blacklist_file,"r") as f:
             blacklist_data = json.load(f)
         filtrage_blacklist = [etudiant for etudiant in blacklist_data if etudiant["id"] != etudiant_id]
@@ -131,40 +119,79 @@ class Administrateur:
     def menu_administrateur(cls):
         print("****************Welcome admin****************")
         while True:
-            choix = input("A: ajouter un etudiant \n B: ajouter un livre \n C: afficher les livres avec les emprunts \n D: afficher la liste des livres \n E:afficher liste etudiant \n F:suprrimer un livre\n G:afficher les etudiant suspendu \n H:reactiver un compte etudiant\n I:suspendre etudiant \n J:supprimer etudiant \nX:exit \n saisir votre choix : ")
-            if choix == 'A':
-                print(Administrateur.ajouter_user())
-            elif choix == 'B':
-                print(class_livre.ajouter_un_livre())
-            elif choix == 'C':
-                print(class_livre.affichage_livres())
-            elif choix == 'D':
-                print(class_livre.affichage_livres_etudiant())
-            elif choix == 'E':
+            choix = input("A: Gérer les étudiants \n B: Gérer les livres \n X: Exit \n Saisir votre choix : ")
+
+            if choix.upper() == 'A':
+                cls.menu_admin_etudiants()
+            elif choix.upper() == 'B':
+                cls.menu_admin_livres()
+            elif choix.upper() == 'X':
+                print("Goodbye!")
+                break
+            else:
+                print("Choix incorrect.")
+
+    def menu_admin_etudiants():
+        while True:
+            choix_etudiant = input("1: Ajouter un étudiant \n"
+                                   "2: Afficher la liste des étudiants \n"
+                                   "3: Supprimer un étudiant \n"
+                                   "4: Modifier un étudiant \n"
+                                   "5: Afficher les étudiants suspendus \n"
+                                   "6: Suspendre un compte étudiant \n"
+                                   "7: Réactiver un compte étudiant \n"
+                                   "0: Revenir au menu principal \n"
+                                   "Saisir votre choix : ")
+
+            if choix_etudiant == '1':
+                print(class_etudiant.ajouter_user())
+            elif choix_etudiant == '2':
                 print(Administrateur.affichage_etudiant())
-            elif choix == 'F':
-                l = int(input('veuillez saisir le id : '))
-                print(Administrateur.supprimer_livre(l,"livres.json"))
-            elif choix == 'G':
+            elif choix_etudiant == '3':
+                yy = int(input('Veuillez saisir le ID de l\'étudiant à supprimer : '))
+                print(Administrateur.supprimer_etudiant(yy, "listes.json"))
+            elif choix_etudiant == '4':
+                hh = int(input('Choisir le ID de l\'étudiant que vous voulez modifier : '))
+                print(class_etudiant.modifier_etudiant(hh))
+            elif choix_etudiant == '5':
                 print(Administrateur.afficher_etudiant_blacklist("blacklist.json"))
-            elif choix == 'H':
-                e = int(input('veuillez saisir le id : '))
-                print(Administrateur.reactiver_compte_etudiant(e, "blacklist.json"))
-            elif choix == 'I':
+            elif choix_etudiant == '6':
                 t = int(input('veuillez saisir le id : '))
-                print(Administrateur.suspendre_etudiant(t,"listes.json"))
-            elif choix == 'J':
-                yy = int(input('veuillez saisir le id : '))
-                print(Administrateur.supprimer_etudiant(yy,"listes.json"))
-            elif choix == 'X':
-                return
-            revenir_menu = input("appuyer sur la touche 0 pour revenir au menu :  ")
-            if revenir_menu.lower()==0:
-                continue
+                print(Administrateur.suspendre_etudiant(t, "listes.json"))
+            elif choix_etudiant == '7':
+                e = int(input('Veuillez saisir le ID de l\'étudiant à réactiver : '))
+                print(Administrateur.reactiver_compte_etudiant(e, "blacklist.json"))
+            elif choix_etudiant == '0':
+                break
+            else:
+                print("Choix incorrect.")
 
+    def menu_admin_livres():
+        while True:
+            choix_livre = input("1: Ajouter un livre \n"
+                                "2: Afficher les livres avec les emprunts \n"
+                                "3: Afficher la liste des livres \n"
+                                "4: Supprimer un livre \n"
+                                "5: Modifier un livre \n"
+                                "0: Revenir au menu principal \n"
+                                "Saisir votre choix : ")
 
-
-
+            if choix_livre == '1':
+                print(class_livre.ajouter_un_livre())
+            elif choix_livre == '2':
+                print(class_livre.affichage_livres())
+            elif choix_livre == '3':
+                print(class_livre.affichage_livres_etudiant())
+            elif choix_livre == '4':
+                l = int(input('Veuillez saisir le ID du livre à supprimer : '))
+                print(Administrateur.supprimer_livre(l, "livres.json"))
+            elif choix_livre == '5':
+                t = int(input('veuillez saisir le ID du livre à modifier : '))
+                print(class_livre.modifier_livre(t))
+            elif choix_livre == '0':
+                break
+            else:
+                print("Choix incorrect.")
 
 #Administrateur.menu_administrateur()
 

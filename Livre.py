@@ -33,18 +33,19 @@ class class_livre:
                 livres = json.load(file)
         except (FileNotFoundError, json.JSONDecodeError): #ca n'as pas voulu ouvrir le fichier quand j'ai ecris juste FileNotfounderror
             cls.livres = []
-        max_id = max(livres, key=lambda x: x['id'], default={'id': 0})['id'] # trouver le id max dans la liste key lambda x(element comme livres[...]) fonction pour qui va rendre la valeur id
-        cls.id = int(max_id) + 1 #on ajoute le id depending on the previous id ce qui le MAX!!!
+        #max_id = max(livres, key=lambda x: x['id'], default={'id': 0})['id'] # trouver le id max dans la liste key lambda x(element comme livres[...]) fonction pour qui va rendre la valeur id
+        #cls.id = int(max_id) + 1 #on ajoute le id depending on the previous id ce qui le MAX!!!
         while True:
-            auteur = input('auteur : ')
-            if auteur == 'stop':  #STOP!!!!!!!!!!!!
+            id = int(input('id :'))
+            if id == '0':#STOP!!!!!!!!!!!!
                 break
+            auteur = input('auteur : ')
             titre = input('titre :')
             editeur = input('editeur :')
             ISBN = input('ISBN :')
             nbr_exemplaire = 1 # on  le nbr exemplaire a 1 et on ajoute
             livre_instance = {
-                'id': cls.id,
+                'id': id,
                 'auteur': auteur,
                 'titre': titre,
                 'editeur': editeur,
@@ -53,12 +54,12 @@ class class_livre:
                 'emprunte_par': [],
                 'date_emprunt': []
             }
-            livre_exist = next((livre for livre in livres if livre['id'] == cls.id), None)  #trouver si le livre exist pour ajouter le nbr et le id
+            livre_exist = next((livre for livre in livres if livre['id'] == id), None)  #trouver si le livre exist pour ajouter le nbr et le id
             if livre_exist:
                 livre_exist['nbr_exemplaire'] += 1
             else:
                 livres.append(livre_instance) # array!!!!!
-                cls.id += 1
+                #cls.id += 1
         with open("livres.json", "w") as file:
             json.dump(livres, file, indent=2)
             file.write('\n')
@@ -140,6 +141,56 @@ class class_livre:
                     return True
         print("Livre non trouvé")
         return False
+
+    @classmethod
+    def modifier_livre(cls, livre_id, nv_titre=None, nv_auteur=None, nv_exemplaires=None):
+        try:
+            with open("livres.json", "r") as f:
+                livres_data = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            print("Error loading book data.")
+            return
+
+        livre_exist = any(x['id'] == livre_id for x in livres_data)
+        if livre_exist:
+            print(f"Choisissez les modifications pour le livre avec ID {livre_id}:")
+            print("1. Changer le titre")
+            print("2. Changer l'auteur")
+            print("3. Changer le nombre d'exemplaires")
+            print("4. Quitter sans modifications")
+
+            choix_modification = input("Choix : ")
+
+            if choix_modification == '1':
+                nv_titre = input("Nouveau titre: ")
+            elif choix_modification == '2':
+                nv_auteur = input("Nouvel auteur: ")
+            elif choix_modification == '3':
+                nv_exemplaires = input("Nouveau nombre d'exemplaires: ")
+            elif choix_modification == '4':
+                print("Quitter sans modifications")
+                return
+
+            for livres in livres_data:
+                if livres["id"] == livre_id:
+                    if nv_titre is not None:
+                        livres["titre"] = nv_titre
+                    if nv_auteur is not None:
+                        livres["auteur"] = nv_auteur
+                    if nv_exemplaires is not None:
+                        livres["nbr_exemplaire"] = nv_exemplaires
+
+            with open("livres.json", "w") as f:
+                json.dump(livres_data, f, indent=2)
+                print(f"Livre avec ID {livre_id} modifié avec succès.")
+        else:
+            print(f"Aucun livre trouvé avec l'ID {livre_id}.")
+
+    @classmethod
+    def update_livre_attribute(cls, livre_id, attribute, new_value):
+        for livre in cls.livres:
+            if livre.id == livre_id:
+                setattr(livre, attribute, new_value)
 
     #@classmethod
     #def supp_emprunt(cls, livre_id, livres_file):  # cette methode pour l'appeler dans supprimer_emprunt class etudiant
