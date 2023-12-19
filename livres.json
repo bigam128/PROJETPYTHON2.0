@@ -6,6 +6,7 @@
     "editeur": "adam",
     "ISBN": "adam",
     "nbr_exemplaire": 45,
+    "quantite_stock": 46,
     "emprunte_par": [
       20
     ],
@@ -23,6 +24,7 @@
     "editeur": "adam",
     "ISBN": "adam",
     "nbr_exemplaire": 64,
+    "quantite_stock": 65,
     "emprunte_par": [
       22
     ],
@@ -39,7 +41,8 @@
     "titre": "espn",
     "editeur": "adam",
     "ISBN": "adam",
-    "nbr_exemplaire": "600",
+    "nbr_exemplaire": 60,
+    "quantite_stock": 601,
     "emprunte_par": [
       22
     ],
@@ -57,6 +60,7 @@
     "editeur": "adm",
     "ISBN": "adam",
     "nbr_exemplaire": 97,
+    "quantite_stock": 97,
     "emprunte_par": [],
     "date_emprunt": []
   },
@@ -67,6 +71,7 @@
     "editeur": "adm",
     "ISBN": "adam",
     "nbr_exemplaire": 96,
+    "quantite_stock": 97,
     "emprunte_par": [
       22
     ],
@@ -84,6 +89,7 @@
     "editeur": "sss",
     "ISBN": "sss",
     "nbr_exemplaire": 89,
+    "quantite_stock": 89,
     "emprunte_par": [],
     "date_emprunt": []
   },
@@ -94,6 +100,7 @@
     "editeur": "ronaldo",
     "ISBN": "ssss",
     "nbr_exemplaire": 75,
+    "quantite_stock": 78,
     "emprunte_par": [
       2,
       4,
@@ -121,6 +128,7 @@
     "editeur": "dehbi",
     "ISBN": "2701",
     "nbr_exemplaire": 77,
+    "quantite_stock": 78,
     "emprunte_par": [
       1
     ],
@@ -130,6 +138,7 @@
         "etudiant_id": 1
       }
     ]
+
   },
   {
     "id": 10,
@@ -138,8 +147,10 @@
     "editeur": "capitaine",
     "ISBN": "jackson",
     "nbr_exemplaire": 66,
+    "quantite_stock": 66,
     "emprunte_par": [],
     "date_emprunt": []
+
   },
   {
     "id": 11,
@@ -148,6 +159,7 @@
     "editeur": "hgytr",
     "ISBN": "789III",
     "nbr_exemplaire": 1,
+    "quantite_stock": 1,
     "emprunte_par": [],
     "date_emprunt": []
   },
@@ -158,7 +170,27 @@
     "editeur": "ZEUS",
     "ISBN": "12SED",
     "nbr_exemplaire": 1,
+    "quantite_stock": 1,
     "emprunte_par": [],
     "date_emprunt": []
+
+  },
+  {
+    "id": 99,
+    "auteur": "hgtyy",
+    "titre": "jjjd",
+    "editeur": "dert",
+    "ISBN": "YY777",
+    "nbr_exemplaire": 99,
+    "quantite_stock": 100,
+    "emprunte_par": [
+      20
+    ],
+    "date_emprunt": [
+      {
+        "date_emprunt": "2023-12-19 22:03:06",
+        "etudiant_id": 20
+      }
+    ]
   }
 ]

@@ -156,7 +156,7 @@ class class_etudiant(class_utilisateurs):
         print("aucun livre correspendant avec cet id")
 
     @classmethod
-    def modifier_etudiant(cls, etudiant_id, new_username=None, new_nom=None, new_prenom=None, new_email=None):
+    def modifier_etudiant(cls, etudiant_id, nv_username=None, nv_nom=None, nv_prenom=None, nv_email=None):
         try:
             with open("listes.json", "r") as f:
                 etudiant_data = json.load(f)
@@ -176,27 +176,27 @@ class class_etudiant(class_utilisateurs):
             choix_modification = input("Choix : ")
 
             if choix_modification == '1':
-                new_nom = input("Nouveau nom: ")
+                nv_nom = input("Nouveau nom: ")
             elif choix_modification == '2':
-                new_prenom = input("Nouveau prénom: ")
+                nv_prenom = input("Nouveau prénom: ")
             elif choix_modification == '3':
-                new_email = input("Nouvel email: ")
+                nv_email = input("Nouvel email: ")
             elif choix_modification == '4':
-                new_username = input("Nouveau nom d'utilisateur: ")
+                nv_username = input("Nouveau nom d'utilisateur: ")
             elif choix_modification == '5':
                 print("Quitter sans modifications.")
                 return
 
             for etudiant in etudiant_data:
                 if etudiant['id'] == etudiant_id:
-                    if new_username is not None:
-                        etudiant['username'] = new_username
-                    if new_nom is not None:
-                        etudiant['nom'] = new_nom
-                    if new_prenom is not None:
-                        etudiant['prenom'] = new_prenom
-                    if new_email is not None:
-                        etudiant['email'] = new_email
+                    if nv_username is not None:
+                        etudiant['username'] = nv_username
+                    if nv_nom is not None:
+                        etudiant['nom'] = nv_nom
+                    if nv_prenom is not None:
+                        etudiant['prenom'] = nv_prenom
+                    if nv_email is not None:
+                        etudiant['email'] = nv_email
 
             with open("listes.json", "w") as f:
                 json.dump(etudiant_data, f, indent=2)

@@ -216,7 +216,8 @@
     "mdp": "a",
     "role": "Etudiant",
     "livres_empruntes": [
-      1
+      1,
+      99
     ],
     "suspended": false
   },

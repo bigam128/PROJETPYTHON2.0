@@ -6,13 +6,14 @@ from datetime import datetime
 class class_livre:
     livres = []
     id = 1
-    def __init__(self, id: int, auteur: str, titre: str, editeur: str, ISBN: str, nbr_exemplaire: int, emprunte_par=None , date_emprunt= None):  # constructeur
+    def __init__(self, id: int, auteur: str, titre: str, editeur: str, ISBN: str, nbr_exemplaire: int, quantite_stock=None,emprunte_par=None, date_emprunt=None):  # constructeur
         self.id = id
         self.auteur = auteur
         self.titre = titre
         self.editeur = editeur
         self.ISBN = ISBN
         self.nbr_exemplaire = nbr_exemplaire
+        self.quantite_stock = 0 if quantite_stock is None else quantite_stock
         self.emprunte_par = [] if emprunte_par is None else emprunte_par
         self.date_emprunt = [] if date_emprunt is None else date_emprunt
 
@@ -37,8 +38,11 @@ class class_livre:
         #cls.id = int(max_id) + 1 #on ajoute le id depending on the previous id ce qui le MAX!!!
         while True:
             id = int(input('id :'))
-            if id == '0':#STOP!!!!!!!!!!!!
+            if id == 0:  # STOP!!!!!!!!!!!!
                 break
+            if any(livre['id'] == id for livre in livres):
+                print(f"livre avec id {id}  exists. choisir different id.")
+                continue
             auteur = input('auteur : ')
             titre = input('titre :')
             editeur = input('editeur :')
@@ -51,15 +55,16 @@ class class_livre:
                 'editeur': editeur,
                 'ISBN': ISBN,
                 'nbr_exemplaire': nbr_exemplaire,
+                'quantite_stock': 0,
                 'emprunte_par': [],
                 'date_emprunt': []
             }
-            livre_exist = next((livre for livre in livres if livre['id'] == id), None)  #trouver si le livre exist pour ajouter le nbr et le id
-            if livre_exist:
-                livre_exist['nbr_exemplaire'] += 1
-            else:
-                livres.append(livre_instance) # array!!!!!
-                #cls.id += 1
+            livres.append(livre_instance)
+
+            for livre in livres:
+                livre['quantite_stock'] = int(livre['nbr_exemplaire']) + len(livre.get('emprunte_par', []))
+                livre['nbr_exemplaire'] = int(livre['quantite_stock']) - len(livre.get('livres_empruntes', []))
+
         with open("livres.json", "w") as file:
             json.dump(livres, file, indent=2)
             file.write('\n')
@@ -68,9 +73,10 @@ class class_livre:
 
 
 
+
     @classmethod
     def affichage_livres(cls):
-        table = PrettyTable(['id', 'auteur', 'titre', 'editeur', 'ISBN', 'nbr_exemplaire', 'emprunter par','date_emprunt'])
+        table = PrettyTable(['id', 'auteur', 'titre', 'editeur', 'ISBN', 'nbr de livres dispo', 'Quantite Stock','emprunter par','date_emprunt'])
         try:
             with open("livres.json", "r") as f:
                 livres_data = json.load(f)
@@ -79,7 +85,7 @@ class class_livre:
                     emprunte_par_name = 'Aucun' if emprunte_par_id is None else f"ID: {emprunte_par_id}"
                     date_emprunt = livre_data.get('date_emprunt', 'Non emprunte')
                     table.add_row([livre_data['id'], livre_data['auteur'], livre_data['titre'], livre_data['editeur'],
-                                   livre_data['ISBN'], livre_data['nbr_exemplaire'], emprunte_par_name, date_emprunt])
+                                   livre_data['ISBN'], livre_data['nbr_exemplaire'], livre_data['quantite_stock'],emprunte_par_name, date_emprunt])
         except FileNotFoundError:
             print("Le fichier n'existe pas.")
         print(table)
