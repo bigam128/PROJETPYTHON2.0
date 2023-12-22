@@ -2,7 +2,6 @@
   {
     "id": 2,
     "username": "user2",
-    "nom": "ssaaaaa",
-    "prenom": "sss"
+    "suspended": true
   }
 ]

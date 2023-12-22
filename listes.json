@@ -19,17 +19,20 @@
     "livres_empruntes": [
       7
     ],
-    "suspended": false
+    "suspended": true
   },
   {
     "id": 3,
-    "nom": "ssaaaaa",
+    "nom": "azser",
     "prenom": "sss",
     "username": "user3",
     "email": "sss",
     "mdp": "3",
     "role": "Etudiant",
-    "livres_empruntes": [],
+    "livres_empruntes": [
+      2,
+      4
+    ],
     "suspended": false
   },
   {
@@ -40,9 +43,7 @@
     "email": "sss",
     "mdp": "4",
     "role": "Etudiant",
-    "livres_empruntes": [
-      7
-    ],
+    "livres_empruntes": [],
     "suspended": false
   },
   {
@@ -217,6 +218,7 @@
     "role": "Etudiant",
     "livres_empruntes": [
       1,
+      6,
       99
     ],
     "suspended": false
@@ -268,6 +270,31 @@
     "mdp": "a",
     "role": "Etudiant",
     "livres_empruntes": [],
+    "suspended": false
+  },
+  {
+    "id": 25,
+    "nom": "nou",
+    "prenom": "veau",
+    "username": "etudiantt",
+    "email": "ASSS",
+    "mdp": "23",
+    "role": "Etudiant",
+    "livres_empruntes": [],
+    "suspended": false
+  },
+  {
+    "id": 26,
+    "nom": "zesr",
+    "prenom": "zser",
+    "username": "azert",
+    "email": "a",
+    "mdp": "A",
+    "role": "Etudiant",
+    "livres_empruntes": [
+      1,
+      2
+    ],
     "suspended": false
   }
 ]

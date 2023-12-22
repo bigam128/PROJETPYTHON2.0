@@ -33,12 +33,11 @@ class class_utilisateurs:
                             return None
                         etudiant_instance = class_etudiant(**user)
                         class_etudiant.user = [etudiant_instance]
-                        etudiant_instance.menu_etudiant()  # Call etudiant menu
+                        etudiant_instance.menu_etudiant()  # app etudiant menu
                         return etudiant_instance
                     elif user['role'].lower() == "administrateur":
                         admin_instance = Administrateur(**user)
                         Administrateur.admin=[admin_instance]
-                        admin_instance.menu_administrateur()  # Call admin menu
+                        admin_instance.menu_administrateur()  # app admin menu
                         return admin_instance
-
         return None

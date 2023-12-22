@@ -5,15 +5,20 @@
     "titre": "adam",
     "editeur": "adam",
     "ISBN": "adam",
-    "nbr_exemplaire": 45,
+    "nbr_exemplaire": 42,
     "quantite_stock": 46,
     "emprunte_par": [
-      20
+      20,
+      26
     ],
     "date_emprunt": [
       {
         "date_emprunt": "2023-12-18 22:48:02",
         "etudiant_id": 20
+      },
+      {
+        "date_emprunt": "2023-12-22 00:08:35",
+        "etudiant_id": 26
       }
     ]
   },
@@ -23,15 +28,25 @@
     "titre": "adaam",
     "editeur": "adam",
     "ISBN": "adam",
-    "nbr_exemplaire": 64,
+    "nbr_exemplaire": 61,
     "quantite_stock": 65,
     "emprunte_par": [
-      22
+      22,
+      3,
+      26
     ],
     "date_emprunt": [
       {
         "date_emprunt": "2023-12-18 23:13:24",
         "etudiant_id": 22
+      },
+      {
+        "date_emprunt": "2023-12-22 00:04:38",
+        "etudiant_id": 3
+      },
+      {
+        "date_emprunt": "2023-12-22 00:08:44",
+        "etudiant_id": 26
       }
     ]
   },
@@ -42,7 +57,7 @@
     "editeur": "adam",
     "ISBN": "adam",
     "nbr_exemplaire": 60,
-    "quantite_stock": 601,
+    "quantite_stock": 61,
     "emprunte_par": [
       22
     ],
@@ -70,15 +85,20 @@
     "titre": "adam",
     "editeur": "adm",
     "ISBN": "adam",
-    "nbr_exemplaire": 96,
+    "nbr_exemplaire": 95,
     "quantite_stock": 97,
     "emprunte_par": [
-      22
+      22,
+      3
     ],
     "date_emprunt": [
       {
         "date_emprunt": "2023-12-18 23:14:03",
         "etudiant_id": 22
+      },
+      {
+        "date_emprunt": "2023-12-22 00:04:52",
+        "etudiant_id": 3
       }
     ]
   },
@@ -88,10 +108,17 @@
     "titre": "sabar",
     "editeur": "sss",
     "ISBN": "sss",
-    "nbr_exemplaire": 89,
+    "nbr_exemplaire": 88,
     "quantite_stock": 89,
-    "emprunte_par": [],
-    "date_emprunt": []
+    "emprunte_par": [
+      20
+    ],
+    "date_emprunt": [
+      {
+        "date_emprunt": "2023-12-22 01:37:23",
+        "etudiant_id": 20
+      }
+    ]
   },
   {
     "id": 7,
@@ -99,21 +126,16 @@
     "titre": "cr7",
     "editeur": "ronaldo",
     "ISBN": "ssss",
-    "nbr_exemplaire": 75,
+    "nbr_exemplaire": 76,
     "quantite_stock": 78,
     "emprunte_par": [
       2,
-      4,
       22
     ],
     "date_emprunt": [
       {
         "date_emprunt": "2023-12-04 19:43:20",
         "etudiant_id": 2
-      },
-      {
-        "date_emprunt": "2023-12-04 19:44:40",
-        "etudiant_id": 4
       },
       {
         "date_emprunt": "2023-12-18 23:14:07",
@@ -129,16 +151,8 @@
     "ISBN": "2701",
     "nbr_exemplaire": 77,
     "quantite_stock": 78,
-    "emprunte_par": [
-      1
-    ],
-    "date_emprunt": [
-      {
-        "date_emprunt": "2023-12-06 09:33:22",
-        "etudiant_id": 1
-      }
-    ]
-
+    "emprunte_par": [],
+    "date_emprunt": []
   },
   {
     "id": 10,
@@ -150,7 +164,6 @@
     "quantite_stock": 66,
     "emprunte_par": [],
     "date_emprunt": []
-
   },
   {
     "id": 11,
@@ -173,7 +186,6 @@
     "quantite_stock": 1,
     "emprunte_par": [],
     "date_emprunt": []
-
   },
   {
     "id": 99,
@@ -181,14 +193,14 @@
     "titre": "jjjd",
     "editeur": "dert",
     "ISBN": "YY777",
-    "nbr_exemplaire": 99,
-    "quantite_stock": 100,
+    "nbr_exemplaire": 299,
+    "quantite_stock": 300,
     "emprunte_par": [
       20
     ],
     "date_emprunt": [
       {
-        "date_emprunt": "2023-12-19 22:03:06",
+        "date_emprunt": "2023-12-01 01:49:20",
         "etudiant_id": 20
       }
     ]

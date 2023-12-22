@@ -1,0 +1,24 @@
+[
+  {
+    "id": 2,
+    "nom": "ssaaaaa",
+    "prenom": "sss",
+    "livres_empruntes": [
+      7
+    ],
+    "date_emprunt": "2023-12-04 19:43:20",
+    "jours_countdown": 17
+  },
+  {
+    "id": 20,
+    "nom": "tyson",
+    "prenom": "mike",
+    "livres_empruntes": [
+      1,
+      6,
+      99
+    ],
+    "date_emprunt": "2023-12-01 01:49:20",
+    "jours_countdown": 21
+  }
+]

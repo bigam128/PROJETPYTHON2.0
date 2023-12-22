@@ -71,12 +71,24 @@ class class_livre:
         print('livre ajouter avec succes')
         return livres
 
+    @classmethod
+    def ajouter_quantite_stock(cls, livre_id, quantite_stock, livres_file):
+        with open(livres_file, "r") as f:
+            livres_data = json.load(f)
+        livre = next((livre for livre in livres_data if livre['id'] == livre_id), None)
 
-
+        if livre:
+            livre['quantite_stock'] += quantite_stock
+            livre['nbr_exemplaire'] += quantite_stock
+            with open(livres_file, "w") as f:
+                json.dump(livres_data, f, indent=2)
+            print(f"Quantité de stock pour le livre avec l'ID {livre_id} ajoutée avec succès.")
+        else:
+            print(f"Livre avec l'ID {livre_id} non trouvé.")
 
     @classmethod
     def affichage_livres(cls):
-        table = PrettyTable(['id', 'auteur', 'titre', 'editeur', 'ISBN', 'nbr de livres dispo', 'Quantite Stock','emprunter par','date_emprunt'])
+        table = PrettyTable(['id', 'auteur', 'titre', 'editeur', 'ISBN', 'nbr de livres dispo', 'Quantite Stock','emprunter par'])
         try:
             with open("livres.json", "r") as f:
                 livres_data = json.load(f)
@@ -85,7 +97,7 @@ class class_livre:
                     emprunte_par_name = 'Aucun' if emprunte_par_id is None else f"ID: {emprunte_par_id}"
                     date_emprunt = livre_data.get('date_emprunt', 'Non emprunte')
                     table.add_row([livre_data['id'], livre_data['auteur'], livre_data['titre'], livre_data['editeur'],
-                                   livre_data['ISBN'], livre_data['nbr_exemplaire'], livre_data['quantite_stock'],emprunte_par_name, date_emprunt])
+                                   livre_data['ISBN'], livre_data['nbr_exemplaire'], livre_data['quantite_stock'],emprunte_par_name])
         except FileNotFoundError:
             print("Le fichier n'existe pas.")
         print(table)
